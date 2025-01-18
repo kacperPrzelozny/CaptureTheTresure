@@ -21,6 +21,31 @@ public class Game
         }
 
         GenerateTresuresAndObstacles();
+        HasStarted = true;
+    }
+    public void MovePlayer(string direction)
+    {
+        switch(direction)
+        {
+            case "up":
+                if(Map.IsInsideMap(Player.X, Player.Y - 1))
+                    Player.Move(Direction.Up);  
+                break;
+            case "down":
+                if (Map.IsInsideMap(Player.X, Player.Y + 1))
+                    Player.Move(Direction.Down);
+                break;
+            case "left":
+                if (Map.IsInsideMap(Player.X - 1, Player.Y))
+                    Player.Move(Direction.Left);
+                break;
+            case "right":
+                if (Map.IsInsideMap(Player.X + 1, Player.Y))
+                    Player.Move(Direction.Right);
+                break;
+            default:
+                break;
+        }
     }
 
     public void Restart()
@@ -33,8 +58,6 @@ public class Game
 
         Start();
     }
-
-    // private methods
 
     private void GenerateTresuresAndObstacles()
     {

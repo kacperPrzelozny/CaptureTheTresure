@@ -1,0 +1,84 @@
+﻿@page
+@model Web.Pages.GameModel
+@{
+    var game = Model.CurrentGame;
+}
+
+<style>
+    .board {
+        display: grid;
+        grid-template-columns: repeat(10, 25px);
+        grid-template-rows: repeat(10, 25px);
+        gap: 5px;
+        margin: 20px auto;
+    }
+
+    .cell {
+        width: 25px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #ddd;
+    }
+
+    .treasure {
+        background-color: gold;
+    }
+
+    .obstacle {
+        background-color: gray;
+    }
+
+    .player {
+        background-color: blue;
+        color: white;
+        font-weight: bold;
+    }
+</style>
+<body>
+    <h1>Capture the Treasure</h1>
+
+    <div class="board">
+        @for (int y = 0; y < 10; y++)
+        {
+            @for (int x = 0; x < 10; x++)
+            {
+                var cellContent = "";
+
+                var treasure = game.Tresures.FirstOrDefault(t => t.X == x && t.Y == y);
+                if (treasure != null)
+                {
+                    cellContent = "<div class='treasure'>T</div>";
+                }
+
+                var obstacle = game.Obstacles.FirstOrDefault(o => o.X == x && o.Y == y);
+                if (obstacle != null)
+                {
+                    cellContent = "<div class='obstacle'>O</div>";
+                }
+
+                if (game.Player.X == x && game.Player.Y == y)
+                {
+                    cellContent = "<div class='player'>P</div>";
+                }
+
+                <div class="cell">
+                    @Html.Raw(cellContent)
+                </div>
+            }
+        }
+    </div>
+    <a href="/Game?direction=up">Up</a>
+    <a href="/Game?direction=right">Right</a>
+    <a href="/Game?direction=down">Down</a>
+    <a href="/Game?direction=left">Left</a>
+
+    <div>
+        <h3>Game Status</h3>
+        <p>Has the game started? @game.HasStarted</p>
+        <p>Has the game finished? @game.HasFinished</p>
+    </div>
+
+</body>
+</html>
