@@ -10,17 +10,7 @@ public class GameModel : PageModel
 
     public void OnGet()
     {
-        var GameHash = GetOrCreateGameHash();
-        Game? GameFromManager = GameManager.FindGame(GameHash);
-        if (null == GameFromManager)
-        {
-            CurrentGame = new Game();
-            GameManager.AddGame(CurrentGame, GameHash);
-        }
-        else
-        {
-            CurrentGame = GameFromManager;
-        }
+        GetOrCreateGame();
         CurrentGame.Start();
 
         string direction = Request.Query["direction"].ToString() ?? "";
@@ -35,6 +25,18 @@ public class GameModel : PageModel
 
     public void OnPost()
     {
+        GetOrCreateGame();
+        CurrentGame.Restart();
+    }
+
+    private string GetOrCreateGameHash()
+    {
+        var GameHash = HttpContext.Session.GetString("GameHash") ?? Guid.NewGuid().ToString();
+        HttpContext.Session.SetString("GameHash", GameHash);
+        return GameHash;
+    }
+    private void GetOrCreateGame()
+    {
         var GameHash = GetOrCreateGameHash();
         Game? GameFromManager = GameManager.FindGame(GameHash);
         if (null == GameFromManager)
@@ -46,13 +48,5 @@ public class GameModel : PageModel
         {
             CurrentGame = GameFromManager;
         }
-        CurrentGame.Restart();
-    }
-
-    private string GetOrCreateGameHash()
-    {
-        var GameHash = HttpContext.Session.GetString("GameHash") ?? Guid.NewGuid().ToString();
-        HttpContext.Session.SetString("GameHash", GameHash);
-        return GameHash;
     }
 }

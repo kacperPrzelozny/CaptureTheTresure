@@ -15,6 +15,11 @@ public class GameEvents : GameEventsInterface
                 break;
             }
         }
+
+        if (0 == Game.Tresures.Count)
+        {
+            Game.HasFinished = true;
+        }
     }
 
     public void HitObstacle(Application.Game.Game Game)

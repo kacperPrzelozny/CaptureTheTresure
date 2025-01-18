@@ -21,6 +21,11 @@
         align-items: center;
         border: 1px solid #ddd;
     }
+    .object{
+        width:100%;
+        height:100%;
+		text-align: center;
+    }
 
     .treasure {
         background-color: gold;
@@ -49,18 +54,18 @@
                 var treasure = game.Tresures.FirstOrDefault(t => t.X == x && t.Y == y);
                 if (treasure != null)
                 {
-                    cellContent = "<div class='treasure'>T</div>";
+                    cellContent = "<div class='treasure object'></div>";
                 }
 
                 var obstacle = game.Obstacles.FirstOrDefault(o => o.X == x && o.Y == y);
                 if (obstacle != null)
                 {
-                    cellContent = "<div class='obstacle'>O</div>";
+                    cellContent = "<div class='obstacle object'></div>";
                 }
 
                 if (game.Player.X == x && game.Player.Y == y)
                 {
-                    cellContent = "<div class='player'>P</div>";
+                    cellContent = "<div class='player object'>P</div>";
                 }
 
                 <div class="cell">
@@ -69,13 +74,19 @@
             }
         }
     </div>
-    @if (game.HasFinished || game.ObstacleWasHit)
+    @if (game.HasFinished && !game.ObstacleWasHit)
     {
+        <h3>You won!!!</h3>
         <form method="POST">
 			<input type="submit" value="Restart Game" />
         </form>
-    } else
-    {
+    }else if(game.ObstacleWasHit){
+        <h3>You lost!</h3>
+        <form method="POST">
+            <input type="submit" value="Restart Game" />
+        </form>
+    }
+    else{
         <a href="/Game?direction=up">Up</a>
         <a href="/Game?direction=right">Right</a>
         <a href="/Game?direction=down">Down</a>
