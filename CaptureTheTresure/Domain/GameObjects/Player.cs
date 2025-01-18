@@ -6,8 +6,7 @@ public class Player : HasPositionInterface
 {
     public int X { get; set; } = 0;
     public int Y { get; set; } = 0;
-    public string Name { get; set; }
-    public int Score { get; set; } = 0;
+    public int Score { get; private set; } = 0;
 
     public void Move(Direction d)
     {
@@ -27,6 +26,13 @@ public class Player : HasPositionInterface
         {
             X++;
         }
+    }
+
+    public void Reset()
+    {
+        Score = 0;
+        X = 0;
+        Y = 0;
     }
 }
 

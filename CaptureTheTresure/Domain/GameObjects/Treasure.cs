@@ -2,16 +2,16 @@
 
 namespace CaptureTheTresure.Domain.GameObjects;
 
-public class Treasure : HasPositionInterface, HasRandomPositionInterface
+public class Treasure : HasPositionInterface
 {
     public int X { get; set; }
     public int Y { get; set; }
     public bool isCollected { get; set; } = false;
 
-    public void rollPosition()
+    public Treasure(int x, int y)
     {
-        X = new Random().Next(1, 10);
-        Y = new Random().Next(1, 10);
+        X = x;
+        Y = y;
     }
 }
 

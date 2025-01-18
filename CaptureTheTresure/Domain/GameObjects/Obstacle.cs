@@ -2,14 +2,14 @@
 
 namespace CaptureTheTresure.Domain.GameObjects;
 
-public class Obstacle: HasPositionInterface, HasRandomPositionInterface
+public class Obstacle: HasPositionInterface
 {
     public int X { get; set; }
     public int Y { get; set; }
-    public void rollPosition()
+    public Obstacle(int x, int y)
     {
-        X = new Random().Next(1, 10);
-        Y = new Random().Next(1, 10);
+        X = x;
+        Y = y;
     }
 }
 
