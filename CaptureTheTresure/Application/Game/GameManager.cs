@@ -1,4 +1,4 @@
-﻿namespace CaptureTheTresure.Application.Game;
+﻿namespace CaptureTheTreasure.Application.Game;
 public static class GameManager
 {
     public static Dictionary<string, Game> Games = new Dictionary<string, Game>();

@@ -1,6 +1,6 @@
-﻿using CaptureTheTresure.Domain.Position;
+﻿using CaptureTheTreasure.Domain.Position;
 
-namespace CaptureTheTresure.Domain.GameObjects;
+namespace CaptureTheTreasure.Domain.GameObjects;
 
 public class Obstacle: HasPositionInterface
 {

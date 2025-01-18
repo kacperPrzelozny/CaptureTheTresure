@@ -1,4 +1,4 @@
-﻿namespace CaptureTheTresure.Infrastructure.Generator;
+﻿namespace CaptureTheTreasure.Infrastructure.Generator;
 
 public class RandomCoordinateGenerator
 {

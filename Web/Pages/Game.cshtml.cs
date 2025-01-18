@@ -1,5 +1,5 @@
-using CaptureTheTresure.Application.Game;
-using Microsoft.AspNetCore.Mvc;
+using CaptureTheTreasure.Infrastructure.Game;
+using CaptureTheTreasure.Application.Game;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Web.Pages;
@@ -24,9 +24,31 @@ public class GameModel : PageModel
         CurrentGame.Start();
 
         string direction = Request.Query["direction"].ToString() ?? "";
-        CurrentGame.MovePlayer(direction);
-
+        if (!CurrentGame.ObstacleWasHit && !CurrentGame.HasFinished)
+        {
+            CurrentGame.MovePlayer(direction);
+            var gameEvents = new GameEvents();
+            gameEvents.CollectTresure(CurrentGame);
+            gameEvents.HitObstacle(CurrentGame);
+        }
     }
+
+    public void OnPost()
+    {
+        var GameHash = GetOrCreateGameHash();
+        Game? GameFromManager = GameManager.FindGame(GameHash);
+        if (null == GameFromManager)
+        {
+            CurrentGame = new Game();
+            GameManager.AddGame(CurrentGame, GameHash);
+        }
+        else
+        {
+            CurrentGame = GameFromManager;
+        }
+        CurrentGame.Restart();
+    }
+
     private string GetOrCreateGameHash()
     {
         var GameHash = HttpContext.Session.GetString("GameHash") ?? Guid.NewGuid().ToString();

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptureTheTresure", "CaptureTheTresure\CaptureTheTresure.csproj", "{DD244D14-4227-4A5A-9FD5-B3AC90F20F1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaptureTheTreasure", "CaptureTheTresure\CaptureTheTreasure.csproj", "{DD244D14-4227-4A5A-9FD5-B3AC90F20F1D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{2CAC51FF-9363-4E80-B365-AA01F3EBC637}"
 EndProject

@@ -1,8 +1,8 @@
-﻿using CaptureTheTresure.Domain.GameObjects;
-using CaptureTheTresure.Domain.Map;
-using CaptureTheTresure.Infrastructure.Generator;
+﻿using CaptureTheTreasure.Domain.GameObjects;
+using CaptureTheTreasure.Domain.Map;
+using CaptureTheTreasure.Infrastructure.Generator;
 
-namespace CaptureTheTresure.Application.Game;
+namespace CaptureTheTreasure.Application.Game;
 
 public class Game
 {
@@ -12,10 +12,11 @@ public class Game
     public Map Map = new Map();
     public bool HasStarted = false;
     public bool HasFinished = false;
+    public bool ObstacleWasHit = false;
 
     public void Start()
     {
-        if (HasStarted && !HasFinished)
+        if (HasStarted)
         {
             return;
         }
@@ -25,6 +26,7 @@ public class Game
     }
     public void MovePlayer(string direction)
     {
+        Player.IncrementMovesCount();
         switch(direction)
         {
             case "up":
@@ -55,6 +57,7 @@ public class Game
         Player.Reset();
         HasStarted = false;
         HasFinished = false;
+        ObstacleWasHit = false;
 
         Start();
     }

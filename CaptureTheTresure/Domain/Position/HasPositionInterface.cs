@@ -1,4 +1,4 @@
-﻿namespace CaptureTheTresure.Domain.Position;
+﻿namespace CaptureTheTreasure.Domain.Position;
 
 public interface HasPositionInterface
 {

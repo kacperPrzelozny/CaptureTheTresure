@@ -1,7 +1,6 @@
-﻿using CaptureTheTresure.Domain.Position;
-using System.Reflection.Metadata.Ecma335;
+﻿using CaptureTheTreasure.Domain.Position;
 
-namespace CaptureTheTresure.Domain.GameObjects;
+namespace CaptureTheTreasure.Domain.GameObjects;
 
 public class Player : HasPositionInterface
 {
@@ -38,9 +37,14 @@ public class Player : HasPositionInterface
         MovesCount = 0;
     }
 
-    public void incrementMovesCount()
+    public void IncrementMovesCount()
     {
         MovesCount++;
+    }
+
+    public void IncrementScore()
+    {
+        Score++;
     }
 }
 

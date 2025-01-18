@@ -69,15 +69,23 @@
             }
         }
     </div>
-    <a href="/Game?direction=up">Up</a>
-    <a href="/Game?direction=right">Right</a>
-    <a href="/Game?direction=down">Down</a>
-    <a href="/Game?direction=left">Left</a>
+    @if (game.HasFinished || game.ObstacleWasHit)
+    {
+        <form method="POST">
+			<input type="submit" value="Restart Game" />
+        </form>
+    } else
+    {
+        <a href="/Game?direction=up">Up</a>
+        <a href="/Game?direction=right">Right</a>
+        <a href="/Game?direction=down">Down</a>
+        <a href="/Game?direction=left">Left</a>
+    }
 
     <div>
         <h3>Game Status</h3>
-        <p>Has the game started? @game.HasStarted</p>
-        <p>Has the game finished? @game.HasFinished</p>
+        <p>Moves counter @game.Player.MovesCount</p>
+        <p>Treasures collected: @game.Player.Score</p>
     </div>
 
 </body>

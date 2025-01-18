@@ -1,4 +1,4 @@
-﻿namespace CaptureTheTresure.Domain.Map;
+﻿namespace CaptureTheTreasure.Domain.Map;
 
 public class Map
 {
